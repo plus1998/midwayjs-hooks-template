@@ -1,5 +1,9 @@
 export default {
     keys: 'hooks_demo-local',
+    jwt: {
+        secret: 'hooks_demo-local',
+        expiresIn: '30d'
+    },
     mongoose: {
         dataSource: {
             default: {
