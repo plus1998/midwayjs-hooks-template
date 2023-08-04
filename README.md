@@ -7,6 +7,7 @@
 * 登录界面+主页
 * 前端请求拦截器
 * 跨域CORS
+* Docker部署
 
 # 开发
 
@@ -25,4 +26,14 @@ npm build
 
 ```shell
 npm run start
+```
+
+# Docker
+
+```shell
+docker build -t app .
+```
+
+```shell
+docker run -itd --name appname --restart=always -p 3000:3000 app
 ```
