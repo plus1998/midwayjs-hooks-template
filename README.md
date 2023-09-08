@@ -31,9 +31,7 @@ npm run start
 # Docker
 
 ```shell
-docker build -t app .
-```
+docker-compose build
 
-```shell
-docker run -itd --name appname --restart=always -p 3000:3000 app
+docker-compose up
 ```

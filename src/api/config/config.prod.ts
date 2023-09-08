@@ -7,7 +7,7 @@ export default {
     mongoose: {
         dataSource: {
             default: {
-                uri: 'mongodb://localhost/hooks_demo-prod',
+                uri: 'mongodb://172.17.0.1/hooks_demo',
                 options: {
                     useNewUrlParser: true,
                     useUnifiedTopology: true,

@@ -7,13 +7,16 @@ RUN apk add tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone
 
-# 安装git
-RUN apk add git
+# 复制项目文件
+COPY ./src /app/src
+COPY ./public /app/public
+COPY ./*.ts /app/
+COPY ./*.js /app/
+COPY ./*.json /app/
+COPY ./*.html /app/
+COPY ./*.css /app/
 
 WORKDIR /app
-
-# 克隆代码
-RUN git clone https://github.com/plusl894860970/midwayjs-hooks-template.git . 
 
 # 安装依赖
 RUN npm install --registry=https://registry.npm.taobao.org
