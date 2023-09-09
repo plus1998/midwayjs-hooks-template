@@ -24,4 +24,6 @@ RUN npm install --registry=https://registry.npm.taobao.org
 # 构建
 RUN npm run build
 
-CMD ["npm", "run", "start"]
+EXPOSE 3000
+
+ENTRYPOINT ["npm", "run", "start"]
