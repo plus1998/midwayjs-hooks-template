@@ -12,6 +12,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
       TZ: Asia/Shanghai
+    volumes:
+      - ./mongo/data:/data/db
   # server
   app:
     image: node:16.9.0-alpine
