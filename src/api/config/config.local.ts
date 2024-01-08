@@ -1,9 +1,5 @@
 export default {
     keys: 'hooks_demo-local',
-    jwt: {
-        secret: 'hooks_demo-local',
-        expiresIn: '30d'
-    },
     mongoose: {
         dataSource: {
             default: {
@@ -12,7 +8,7 @@ export default {
                     useNewUrlParser: true,
                     useUnifiedTopology: true,
                     user: 'root',
-                    pass: '123456',
+                    pass: 'Super123456',
                     authSource: 'admin',
                 },
                 // 关联实体

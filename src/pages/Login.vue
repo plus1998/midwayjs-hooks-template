@@ -18,13 +18,14 @@ const formState = reactive({
 const loading = ref(false);
 const loginSubmit = async () => {
   loading.value = true;
-  const { success, message: msg, data } = await login(
+  const ret = await login(
     formState.username,
     md5(formState.password)
   );
-  message[success ? "success" : "error"](msg);
-  if (data) {
-    localStorage.setItem("TOKEN", data);
+  message[ret.success ? "success" : "error"](ret.message);
+  if (ret.success && ret.data) {
+    localStorage.setItem("TOKEN", ret.data.token);
+    localStorage.setItem("REFRESH_TOKEN", ret.data.refreshToken);
     router.replace("/home");
   }
   loading.value = false;

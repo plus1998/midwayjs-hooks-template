@@ -34,7 +34,6 @@ export class JwtMiddleware {
           });
           ctx.user = ret['payload'];
         } catch (error) {
-          //token过期
           ctx.status = 401;
           return
         }
@@ -49,6 +48,7 @@ export class JwtMiddleware {
       || ctx.path.startsWith('/assets/')
       || ctx.path === '/User/Register'
       || ctx.path === '/User/Login'
+      || ctx.path === '/User/RefreshToken'
       || ctx.path.startsWith('/ui')
       || ctx.path.startsWith('/favicon.ico')
     return !ignore;

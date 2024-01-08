@@ -1,7 +1,6 @@
 import { Context } from '@midwayjs/koa';
 import { UserService } from './service/user.service';
 import { Api, Post, useInject, useContext } from '@midwayjs/hooks';
-import { JwtService } from '@midwayjs/jwt';
 
 // 用户注册
 export const register = Api(Post(), async (username: string, password: string) => {
@@ -20,18 +19,22 @@ export const register = Api(Post(), async (username: string, password: string) =
 // 用户登录
 export const login = Api(Post('/User/Login'), async (username: string, password: string) => {
     if (!username || !password) {
-        return { success: false, message: '参数错误' }
+        return { success: false, message: '参数错误', data: {} }
     }
-    const { userModel } = await useInject(UserService);
-    const ret = await userModel.findOne({
-        username,
-        password,
-    })
-    if (!ret) return { success: false, message: '账号或密码错误' }
-    // 生成token
-    const jwtService = await useInject(JwtService);
-    const token = jwtService.signSync({ _id: ret._id, role: ret.role })
-    return { success: true, data: token, message: '登入成功' };
+    const userService = await useInject(UserService);
+    return await userService.login(username, password);
+});
+
+// 刷新token
+export const refreshToken = Api(Post('/User/RefreshToken'), async (refreshToken: string) => {
+    const ctx = useContext<Context>();
+    const userService = await useInject(UserService);
+    // 从header中获取token（已经过期的）
+    const token = ctx.headers['authorization'].trim().split(' ')[1];
+    // 从token中获取用户信息 未经过校验的
+    const [header, payload, signature] = token.split('.');
+    const user = JSON.parse(Buffer.from(payload, 'base64').toString());
+    return await userService.refreshToken(user._id, refreshToken);
 });
 
 // 用户信息
