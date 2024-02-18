@@ -27,14 +27,8 @@ export const login = Api(Post('/User/Login'), async (username: string, password:
 
 // 刷新token
 export const refreshToken = Api(Post('/User/RefreshToken'), async (refreshToken: string) => {
-    const ctx = useContext<Context>();
     const userService = await useInject(UserService);
-    // 从header中获取token（已经过期的）
-    const token = ctx.headers['authorization'].trim().split(' ')[1];
-    // 从token中获取用户信息 未经过校验的
-    const [header, payload, signature] = token.split('.');
-    const user = JSON.parse(Buffer.from(payload, 'base64').toString());
-    return await userService.refreshToken(user._id, refreshToken);
+    return await userService.refreshToken(refreshToken);
 });
 
 // 用户信息

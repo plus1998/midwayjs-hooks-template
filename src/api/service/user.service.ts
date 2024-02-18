@@ -40,8 +40,12 @@ export class UserService {
     };
   }
 
-  async refreshToken(uid: string, refreshToken: string) {
-    // 这里的uid是为经过校验的， 但是如果refreshToken能验证成功，说明uid没问题
+  async refreshToken(refreshToken: string) {
+    // 从token中获取用户信息 未经过校验的
+    const [, payload_str] = refreshToken.split('.');
+    const payload = JSON.parse(Buffer.from(payload_str, 'base64').toString());
+    const uid = payload._id;
+    // 这里的uid是未经过校验签名的， 但是如果refreshToken能验证成功，说明uid没问题
     const user = await this.userModel.findById(uid);
     try {
       const ret = this.jwtService.verifySync(refreshToken, user.password, this.refreshJwtConfig);
