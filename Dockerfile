@@ -1,4 +1,7 @@
-FROM node:16.9.0-alpine
+FROM node:18.18.0-alpine
+
+# 设置国内源
+# RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
 RUN apk update
 
@@ -10,11 +13,16 @@ RUN apk add tzdata && \
 # 复制package.json
 COPY ./package.json /app/package.json
 
+# 安装nrm
+# RUN npm --registry=https://registry.npm.taobao.org install nrm -g --verbose
+# 切换镜像源
+# RUN nrm use taobao
+
 # 安装依赖
 WORKDIR /app
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN npm install --verbose
 
-# --- 以上为缓存，以下为构建 ---
+# --- 以上为缓存 ---
 
 # 复制项目文件
 COPY . /app
