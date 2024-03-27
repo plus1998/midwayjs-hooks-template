@@ -5,7 +5,7 @@ import Login from './pages/Login.vue';
 const routes: any = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
   },
   {
     path: '/login',

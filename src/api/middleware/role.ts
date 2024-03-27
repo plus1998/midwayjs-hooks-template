@@ -8,8 +8,8 @@ const isAdmin = async (next: any) => {
     await next();
   } else {
     ctx.status = 401;
-    return
+    return;
   }
 };
 
-export { isAdmin }
+export { isAdmin };

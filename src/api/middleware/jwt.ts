@@ -35,7 +35,7 @@ export class JwtMiddleware {
           ctx.user = ret['payload'];
         } catch (error) {
           ctx.status = 401;
-          return
+          return;
         }
         await next();
       }
@@ -44,13 +44,14 @@ export class JwtMiddleware {
 
   // 配置忽略鉴权的路由地址
   public match(ctx: Context): boolean {
-    const ignore = ctx.path === '/'
-      || ctx.path.startsWith('/assets/')
-      || ctx.path === '/User/Register'
-      || ctx.path === '/User/Login'
-      || ctx.path === '/User/RefreshToken'
-      || ctx.path.startsWith('/ui')
-      || ctx.path.startsWith('/favicon.ico')
+    const ignore =
+      ctx.path === '/' ||
+      ctx.path.startsWith('/assets/') ||
+      ctx.path === '/User/Register' ||
+      ctx.path === '/User/Login' ||
+      ctx.path === '/User/RefreshToken' ||
+      ctx.path.startsWith('/ui') ||
+      ctx.path.startsWith('/favicon.ico');
     return !ignore;
   }
 }

@@ -1,7 +1,7 @@
-import { reactive } from 'vue'
+import { reactive } from 'vue';
 
 export const user = reactive({
   _id: '',
   username: '',
-  role: 'user'
-})
+  role: 'user',
+});
