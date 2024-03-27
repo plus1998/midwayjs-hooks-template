@@ -22,7 +22,7 @@ const refreshToken = async () => {
   }
   isRefreshing = true;
   try {
-    const { refreshToken } = await import('./api/user.api');
+    const { refreshToken } = await import('./api/controller/user.api');
     const { data } = await refreshToken(localStorage.getItem('REFRESH_TOKEN'));
     localStorage.setItem('TOKEN', data.token);
     console.log('刷新token成功');

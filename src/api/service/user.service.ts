@@ -7,7 +7,6 @@ import { JwtService } from '@midwayjs/jwt';
 
 @Provide()
 export class UserService {
-
   @InjectEntityModel(User)
   userModel: ReturnModelType<typeof User>;
 
@@ -24,19 +23,23 @@ export class UserService {
     const ret = await this.userModel.findOne({
       username,
       password,
-    })
-    if (!ret) return { success: false, message: '账号或密码错误', data: {} }
+    });
+    if (!ret) return { success: false, message: '账号或密码错误', data: {} };
     // 生成token
-    const token = this.jwtService.signSync({ _id: ret._id, role: ret.role })
+    const token = this.jwtService.signSync({ _id: ret._id, role: ret.role });
     // 生成refreshToken
-    const refreshToken = this.jwtService.signSync({ _id: ret._id }, ret.password, this.refreshJwtConfig);
+    const refreshToken = this.jwtService.signSync(
+      { _id: ret._id },
+      ret.password,
+      this.refreshJwtConfig,
+    );
     return {
       success: true,
       message: '登入成功',
       data: {
         token,
         refreshToken,
-      }
+      },
     };
   }
 
@@ -48,12 +51,17 @@ export class UserService {
     // 这里的uid是未经过校验签名的， 但是如果refreshToken能验证成功，说明uid没问题
     const user = await this.userModel.findById(uid);
     try {
-      const ret = this.jwtService.verifySync(refreshToken, user.password, this.refreshJwtConfig);
-      if (ret['_id'] !== uid) return { success: false, message: 'refreshToken不正确' }
+      const ret = this.jwtService.verifySync(
+        refreshToken,
+        user.password,
+        this.refreshJwtConfig,
+      );
+      if (ret['_id'] !== uid)
+        return { success: false, message: 'refreshToken不正确' };
     } catch (error) {
-      return { success: false, message: 'refreshToken已过期' }
+      return { success: false, message: 'refreshToken已过期' };
     }
-    const token = this.jwtService.signSync({ _id: user._id, role: user.role })
+    const token = this.jwtService.signSync({ _id: user._id, role: user.role });
     return { success: true, data: { token }, message: '刷新成功' };
   }
 
@@ -69,7 +77,7 @@ export class UserService {
     const user = await this.userModel.findById(uid);
     oldPass = crypto.createHash('md5').update(oldPass).digest('hex');
     if (user.password !== oldPass) {
-      return { success: false, message: '密码错误' }
+      return { success: false, message: '密码错误' };
     }
     user.password = crypto.createHash('md5').update(newPass).digest('hex');
     await user.save();
@@ -84,7 +92,7 @@ export class UserService {
     });
     if (admin) {
       this.logger.warn('管理员已注册');
-      return
+      return;
     }
     try {
       await this.createUser('admin', 'public', 'admin');

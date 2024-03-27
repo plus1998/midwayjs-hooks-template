@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import { login } from "../api/user.api";
+import { login } from "../api/controller/user.api";
 import md5 from "js-md5";
 import { message } from "ant-design-vue";
 import { useRouter } from "vue-router";

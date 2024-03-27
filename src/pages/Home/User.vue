@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { message } from "ant-design-vue";
 import { reactive, ref } from "vue";
-import { info, register, changePassword } from "../../api/user.api";
+import { info, register, changePassword } from "../../api/controller/user.api";
 import { User } from "../../api/entity/user";
 
 const user = ref({} as User);

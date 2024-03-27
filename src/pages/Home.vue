@@ -34,7 +34,7 @@ import {
 import { ref, onMounted, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
-import { info } from "../api/user.api";
+import { info } from "../api/controller/user.api";
 import { user } from "../store";
 
 // 路由切换
