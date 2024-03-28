@@ -19,15 +19,11 @@ import { UserService } from './service/user.service';
     jwt,
     hooks({
       middleware: [cors({ origin: '*' }), JwtMiddleware],
-    })
+    }),
   ],
-  importConfigs: [
-    join(__dirname, './config')
-  ]
+  importConfigs: [join(__dirname, './config')],
 })
-
 export class MainConfiguration implements ILifeCycle {
-
   @Inject()
   logger;
 
