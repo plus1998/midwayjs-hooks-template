@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "hooks dev",
     "build": "hooks build",
-    "start": "MIDWAY_SERVER_ENV=prod hooks start --port=3000"
+    "start": "MIDWAY_SERVER_ENV=prod hooks start --port=3000",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
