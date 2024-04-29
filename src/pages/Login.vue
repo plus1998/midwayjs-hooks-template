@@ -59,6 +59,7 @@ const loginSubmit = async () => {
         </a-col>
       </a-row>
     </div>
+
     <!-- 内容 -->
     <div class="content">
       <div class="loginForm">
@@ -87,7 +88,7 @@ const loginSubmit = async () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .header {
   width: 100%;
   height: 70px;
@@ -110,7 +111,11 @@ const loginSubmit = async () => {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-.submit-button {
+.loginForm:deep(.ant-form) {
+  color: white;
+}
+
+.loginForm:deep(.submit-button) {
   padding: 5px 0;
   border-radius: 6px;
   width: 50%;
@@ -119,16 +124,12 @@ const loginSubmit = async () => {
   font-size: 200;
 }
 
-.submit-button:hover {
+.loginForm:deep(.submit-button):hover {
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.ant-form {
-  color: white !important;
-}
-
-label {
+.loginForm:deep(label) {
   color: white !important;
 }
 
@@ -138,11 +139,11 @@ label {
   color: white !important;
 }
 
-.ant-input:focus {
+.loginForm:deep(.ant-input):focus {
   border: 1px solid white;
 }
 
-.ant-input:hover {
+.loginForm:deep(.ant-input):hover {
   border: 1px solid white;
 }
 
