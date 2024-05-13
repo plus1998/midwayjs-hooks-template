@@ -44,6 +44,9 @@ export class UserService {
   }
 
   async refreshToken(refreshToken: string) {
+    if (!refreshToken) {
+      return { success: false, message: 'refreshToken已过期' };
+    }
     // 从token中获取用户信息 未经过校验的
     const [, payload_str] = refreshToken.split('.');
     const payload = JSON.parse(Buffer.from(payload_str, 'base64').toString());
