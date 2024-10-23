@@ -51,6 +51,13 @@ const collapsed = ref<boolean>(false);
 const selectedKeys = ref<string[]>([page]);
 const openKeys = ref([""]);
 
+// 如果屏幕宽度小于768，收起侧边栏
+onMounted(() => {
+  if (window.innerWidth < 768) {
+    collapsed.value = true;
+  }
+});
+
 // 保存openKeys
 const saveOpenKeys = () => {
   localStorage.setItem("openKeys", JSON.stringify(openKeys.value));
