@@ -6,7 +6,8 @@
     "dev": "hooks dev",
     "build": "hooks build",
     "start": "MIDWAY_SERVER_ENV=prod hooks start --port=3000",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "test": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
