@@ -5,8 +5,9 @@ export default {
   midwayLogger: {
     default: {
       level: 'info',
-      // 一般来说服务器是不输出日志到控制台的
+      // 使用pm2启动可以console开启，file关闭
       transports: {
+        file: false,
         console: {
           level: 'info',
         },
