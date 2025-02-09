@@ -5,7 +5,12 @@ export default {
   midwayLogger: {
     default: {
       level: 'info',
-      consoleLevel: 'warn',
+      // 一般来说服务器是不输出日志到控制台的
+      transports: {
+        console: {
+          level: 'info',
+        },
+      },
     },
   },
   jwt: {
