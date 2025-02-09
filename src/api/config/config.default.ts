@@ -1,4 +1,7 @@
+import { loggers } from '@midwayjs/logger';
+
 export default {
+  loggerFactory: loggers,
   midwayLogger: {
     default: {
       level: 'info',

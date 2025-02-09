@@ -1,4 +1,4 @@
-import { Configuration, ILifeCycle, Inject } from '@midwayjs/core';
+import { Configuration, ILifeCycle, IMidwayContainer } from '@midwayjs/core';
 import { hooks } from '@midwayjs/hooks';
 import * as Koa from '@midwayjs/koa';
 import * as typegoose from '@midwayjs/typegoose';
@@ -24,10 +24,7 @@ import { UserService } from './service/user.service';
   importConfigs: [join(__dirname, './config')],
 })
 export class MainConfiguration implements ILifeCycle {
-  @Inject()
-  logger;
-
-  async onServerReady(container) {
+  async onServerReady(container: IMidwayContainer) {
     const userService = await container.getAsync(UserService);
     await userService.initAdmin();
   }
