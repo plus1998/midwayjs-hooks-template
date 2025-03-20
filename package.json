@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
+    "@midwayjs/bootstrap": "^3.20.3",
     "@midwayjs/core": "^3.20.0",
     "@midwayjs/hooks": "^3.1.6",
     "@midwayjs/hooks-kit": "^3.1.6",

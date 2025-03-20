@@ -2,6 +2,9 @@ import { loggers } from '@midwayjs/logger';
 
 export default {
   loggerFactory: loggers,
+  koa: {
+    port: 3000,
+  },
   midwayLogger: {
     default: {
       level: 'info',
