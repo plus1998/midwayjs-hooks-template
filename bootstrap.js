@@ -1,7 +1,11 @@
 const { Bootstrap } = require('@midwayjs/bootstrap');
+const { setProjectRoot } = require('@midwayjs/hooks-internal');
+
 const { resolve } = require('path');
 
 const baseDir = resolve(__dirname, 'dist');
+
+setProjectRoot(baseDir);
 
 Bootstrap.configure({
   baseDir,
