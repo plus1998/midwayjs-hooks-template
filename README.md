@@ -30,7 +30,7 @@ npm run start
 
 # PM2
 ```shell
-pm2 start bootstrap.js --name=hooks_demo -i 4
+pm2 start bootstrap.js --name=hooks_demo -i 4 --env production
 ```
 
 # Docker
