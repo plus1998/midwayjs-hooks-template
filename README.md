@@ -31,7 +31,12 @@ npm run start
 
 # PM2部署
 ```shell
+# 启动
 pm2 start ecosystem.config.js
+# 保存
+pm2 save
+# 开机启动
+pm2 startup
 ```
 
 # Docker部署
