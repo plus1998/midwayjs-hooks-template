@@ -18,22 +18,23 @@ npm i
 npm run dev
 ```
 
-# 部署
+# 构建
 
 ```shell
 npm build
 ```
 
+# 启动
 ```shell
 npm run start
 ```
 
-# PM2
+# PM2部署
 ```shell
-pm2 start bootstrap.js --name=hooks_demo -i 4 --env production
+pm2 start ecosystem.config.js
 ```
 
-# Docker
+# Docker部署
 
 ```shell
 docker-compose build
