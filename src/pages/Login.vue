@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ref, reactive, CSSProperties } from "vue";
-import { login } from "../../app/controller/user.api";
+import { login } from "@api/user.api";
 import md5 from "js-md5";
 import { message } from "ant-design-vue";
 import { useRouter } from "vue-router";
-import bgImg from '../assets/bg.jpg';
+import bgImg from '@/assets/bg.jpg';
 
 const loginPageStyle: CSSProperties = {
   width: '100%',

@@ -34,8 +34,8 @@ import {
 import { ref, onMounted, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
-import { info } from "../../app/controller/user.api";
-import { user } from "../store";
+import { info } from "@api/user.api";
+import { user } from "@/store";
 
 // 路由切换
 const router = useRouter();
