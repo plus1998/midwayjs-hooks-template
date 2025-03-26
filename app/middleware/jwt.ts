@@ -1,12 +1,10 @@
-import { Inject, Middleware, httpError } from '@midwayjs/core';
+import { Middleware, httpError } from '@midwayjs/core';
 import { Context, NextFunction } from '@midwayjs/koa';
 import { JwtService } from '@midwayjs/jwt';
+import { useInject } from '@midwayjs/hooks';
 
 @Middleware()
 export class JwtMiddleware {
-  @Inject()
-  jwtService: JwtService;
-
   public static getName(): string {
     return 'jwt';
   }
@@ -29,7 +27,8 @@ export class JwtMiddleware {
       if (/^Bearer$/i.test(scheme)) {
         try {
           //jwt.verify方法验证token是否有效
-          const ret = await this.jwtService.verify(token, {
+          const jwtService = await useInject(JwtService);
+          const ret = await jwtService.verify(token, {
             complete: true,
           });
           ctx.user = ret['payload'];

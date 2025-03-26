@@ -1,4 +1,4 @@
-import { UserService } from '../../api/service/user.service';
+import { UserService } from '../../../app/service/user.service';
 import { createApp, close } from '@midwayjs/mock';
 import { join } from 'path';
 
@@ -6,10 +6,10 @@ import * as Koa from '@midwayjs/koa';
 
 describe('test/service/user.service.ts', () => {
   test('UserService.Example', async () => {
-    const backendDir = join(__dirname, '../../api')
+    const backendDir = join(__dirname, '../../app')
     const config = {
       baseDir: backendDir,
-      importConfigs: [join(__dirname, '../../api/config')],
+      importConfigs: [join(__dirname, '../../app/config')],
     };
     // create app
     const app = await createApp<Koa.Framework>(backendDir, config);
