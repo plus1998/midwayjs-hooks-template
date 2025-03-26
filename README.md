@@ -7,6 +7,7 @@
 * 登录界面+主页
 * 前端请求拦截器
 * 跨域CORS
+* PM2部署
 * Docker部署
 
 # 开发
@@ -32,7 +33,7 @@ npm run start
 # PM2部署
 ```shell
 # 启动
-pm2 start ecosystem.config.js
+pm2 start
 # 保存
 pm2 save
 # 开机启动
