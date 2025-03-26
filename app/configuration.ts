@@ -9,6 +9,8 @@ import * as jwt from '@midwayjs/jwt';
 import { JwtMiddleware } from './middleware/jwt';
 import { UserService } from './service/user.service';
 import * as redis from '@midwayjs/redis';
+import * as bullmq from '@midwayjs/bullmq';
+import * as bullBoard from '@midwayjs/bull-board';
 
 /**
  * setup midway server
@@ -16,9 +18,11 @@ import * as redis from '@midwayjs/redis';
 @Configuration({
   imports: [
     Koa,
-    redis,
-    typegoose,
     jwt,
+    typegoose,
+    redis,
+    bullmq,
+    bullBoard,
     hooks({
       middleware: [cors({ origin: '*' }), JwtMiddleware],
     }),

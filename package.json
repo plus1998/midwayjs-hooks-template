@@ -12,6 +12,8 @@
   "dependencies": {
     "@koa/cors": "^4.0.0",
     "@midwayjs/bootstrap": "^3.20.3",
+    "@midwayjs/bull-board": "^3.20.3",
+    "@midwayjs/bullmq": "^3.20.3",
     "@midwayjs/core": "^3.20.0",
     "@midwayjs/hooks": "^3.1.6",
     "@midwayjs/hooks-internal": "^3.1.6",

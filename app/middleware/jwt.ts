@@ -49,7 +49,7 @@ export class JwtMiddleware {
       ctx.path === '/User/Register' ||
       ctx.path === '/User/Login' ||
       ctx.path === '/User/RefreshToken' ||
-      ctx.path.startsWith('/ui') ||
+      ctx.path.startsWith('/queue') ||
       ctx.path.startsWith('/favicon.ico');
     return !ignore;
   }
