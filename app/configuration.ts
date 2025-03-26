@@ -8,6 +8,7 @@ import * as jwt from '@midwayjs/jwt';
 // middleware
 import { JwtMiddleware } from './middleware/jwt';
 import { UserService } from './service/user.service';
+import * as redis from '@midwayjs/redis';
 
 /**
  * setup midway server
@@ -15,6 +16,7 @@ import { UserService } from './service/user.service';
 @Configuration({
   imports: [
     Koa,
+    redis,
     typegoose,
     jwt,
     hooks({

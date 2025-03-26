@@ -2,6 +2,9 @@
 
 # 介绍
 * Typegoose+MongoDB
+* Redis
+* 消息队列（BULL）
+* 分布式定时任务
 * 单元测试
 * JWT中间件鉴权
 * TailwindCSS

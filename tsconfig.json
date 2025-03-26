@@ -9,15 +9,33 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "skipLibCheck": true,
     "paths": {
-      "@api/*": ["./app/controller/*"],
-      "@entity/*": ["./app/entity/*"],
-      "@/*": ["./src/*"],
+      "@api/*": [
+        "./app/controller/*"
+      ],
+      "@entity/*": [
+        "./app/entity/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    // server
+    "app/**/*.ts",
+    "app/**/*.d.ts",
+    // vue
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
