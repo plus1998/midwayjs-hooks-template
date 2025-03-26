@@ -8,7 +8,7 @@ export default {
           useNewUrlParser: true,
           useUnifiedTopology: true,
           user: 'root',
-          pass: '123456',
+          pass: 'Super123456',
           authSource: 'admin',
         },
         // 关联实体

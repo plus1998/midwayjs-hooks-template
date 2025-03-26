@@ -7,7 +7,7 @@
     "build": "hooks build",
     "start": "MIDWAY_SERVER_ENV=prod hooks start --port=3000",
     "lint": "eslint . --fix",
-    "test": "jest --runInBand --detectOpenHandles --forceExit"
+    "test": "midway-bin test --ts"
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
