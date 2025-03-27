@@ -31,6 +31,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "js-md5": "^0.7.3",
     "mongoose": "^7.6.4",
+    "uuid": "^11.1.0",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5"
   },
@@ -39,6 +40,7 @@
     "@types/jest": "^29.5.2",
     "@types/lodash": "^4.14.185",
     "@types/node": "^18.11.3",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@vitejs/plugin-vue": "^4.6.2",
     "autoprefixer": "^10.4.13",

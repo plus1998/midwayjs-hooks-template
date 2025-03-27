@@ -18,6 +18,14 @@ export class User {
   @prop({ type: String, required: true })
   public password: string;
 
-  @prop({ type: () => String, default: 'user' })
+  @prop({ type: () => String, default: 'user', index: 1 })
   public role: string;
+
+  // 当需要用户重新登录的时候 修改这个字段
+  @prop({ type: () => String, required: true })
+  public jwtSecret: string;
+
+  // 用户信息 创建两个信息表 amdinProfile userProfile 关联的时候根据role查询
+  // @prop({ type: () => String, required: true })
+  // profileId: string;
 }

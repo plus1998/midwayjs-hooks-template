@@ -19,9 +19,14 @@ export default {
   },
   jwt: {
     secret: 'hooks_demo-common',
-    expiresIn: '6h',
-    refreshToken: {
+    expiresIn: '1h',
+  },
+  jwtExtend: {
+    // 双token
+    refreshTokenConfig: {
       expiresIn: '90d',
     },
+    // 单点登录
+    singleSignOn: true,
   },
 };

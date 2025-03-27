@@ -4,6 +4,7 @@ import { InjectEntityModel } from '@midwayjs/typegoose';
 import { ReturnModelType } from '@typegoose/typegoose';
 import crypto from 'crypto';
 import { JwtService } from '@midwayjs/jwt';
+import { v4 } from 'uuid';
 
 @Provide()
 export class UserService {
@@ -13,25 +14,35 @@ export class UserService {
   @Inject()
   jwtService: JwtService;
 
-  @Config('jwt.refreshToken')
-  refreshJwtConfig;
+  @Config('jwtExtend')
+  jwtExtend: {
+    refreshTokenConfig: {
+      expiresIn: string;
+    };
+    singleSignOn: boolean;
+  };
 
   @Inject()
   logger;
 
   async login(username: string, password: string) {
-    const ret = await this.userModel.findOne({
+    const user = await this.userModel.findOne({
       username,
       password,
     });
-    if (!ret) return { success: false, message: '账号或密码错误', data: {} };
+    if (!user) return { success: false, message: '账号或密码错误', data: {} };
+    // 单点登录
+    if (this.jwtExtend.singleSignOn) {
+      user.jwtSecret = v4();
+      await user.save();
+    }
     // 生成token
-    const token = this.jwtService.signSync({ _id: ret._id, role: ret.role });
+    const token = this.jwtService.signSync({ _id: user._id, role: user.role });
     // 生成refreshToken
     const refreshToken = this.jwtService.signSync(
-      { _id: ret._id },
-      ret.password,
-      this.refreshJwtConfig,
+      { _id: user._id },
+      user.jwtSecret, // 使用user的jwtSecret字段签名（修改密码/需要单点登录的时候更新这个字段）
+      this.jwtExtend.refreshTokenConfig,
     );
     return {
       success: true,
@@ -51,14 +62,12 @@ export class UserService {
     const [, payload_str] = refreshToken.split('.');
     const payload = JSON.parse(Buffer.from(payload_str, 'base64').toString());
     const uid = payload._id;
-    // 这里的uid是未经过校验签名的， 但是如果refreshToken能验证成功，说明uid没问题
+    // 这里的uid是未经过校验签名的， 但是如果verifySync能验证成功，说明uid没问题
     const user = await this.userModel.findById(uid);
     try {
-      const ret = this.jwtService.verifySync(
-        refreshToken,
-        user.password,
-        this.refreshJwtConfig,
-      );
+      const ret = this.jwtService.verifySync(refreshToken, user.jwtSecret, {
+        complete: false,
+      });
       if (ret['_id'] !== uid)
         return { success: false, message: 'refreshToken不正确' };
     } catch (error) {
@@ -73,6 +82,7 @@ export class UserService {
       username,
       password: crypto.createHash('md5').update(password).digest('hex'),
       role,
+      jwtSecret: v4(),
     });
   }
 
@@ -83,6 +93,8 @@ export class UserService {
       return { success: false, message: '密码错误' };
     }
     user.password = crypto.createHash('md5').update(newPass).digest('hex');
+    // 修改jwtSecret
+    user.jwtSecret = v4();
     await user.save();
     return { success: true, message: '修改成功' };
   }
@@ -94,6 +106,10 @@ export class UserService {
       role: 'admin',
     });
     if (admin) {
+      if (!admin.jwtSecret) {
+        admin.jwtSecret = v4();
+        await admin.save();
+      }
       this.logger.warn('管理员已注册');
       return;
     }
