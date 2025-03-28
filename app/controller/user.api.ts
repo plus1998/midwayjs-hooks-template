@@ -44,7 +44,7 @@ export const refreshToken = Api(
 export const info = Api(Post('/User/Info'), async () => {
   const ctx = useContext<Context>();
   const { userModel } = await useInject(UserService);
-  const ret = await userModel.findById(ctx.user._id, '-password');
+  const ret = await userModel.findById(ctx.user._id, '-password -jwtSecret');
   return { success: true, data: ret };
 });
 
