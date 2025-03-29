@@ -11,14 +11,14 @@ export class DemoService {
 
   // 队列使用
   @Inject()
-  bullmqFramework: bullmq.Framework;
+  bullMqFramework: bullmq.Framework;
 
   async redis_demo() {
     return this.redisService.set('hooks_demo', 'hello', 'EX', 10);
   }
 
   async queue_demo() {
-    const queue = this.bullmqFramework.getQueue(Queue.demo);
+    const queue = this.bullMqFramework.getQueue(Queue.demo);
     await queue.addJobToQueue(
       {
         t: Date.now(),

@@ -5,6 +5,6 @@ import { Queue } from '../enum/queue.enum';
 export class DemoQueueProcessor implements IProcessor {
   async execute(data: any) {
     // 处理任务逻辑
-    console.log('queue job:', data);
+    console.log('execute queue job:', data);
   }
 }
