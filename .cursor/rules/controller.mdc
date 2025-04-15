@@ -1,6 +1,6 @@
 ---
 description: 
-globs: *.api.ts
+globs: app/controller/*.ts
 alwaysApply: false
 ---
 编写controller的示例

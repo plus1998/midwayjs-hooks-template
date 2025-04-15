@@ -1,6 +1,6 @@
 ---
 description: 
-globs: 
+globs: app/service/*.ts
 alwaysApply: false
 ---
 编写service的示例
