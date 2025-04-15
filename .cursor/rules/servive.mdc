@@ -1,0 +1,22 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+编写service的示例
+```typescript
+import { Provide, Inject } from '@midwayjs/core';
+import { RedisService } from '@midwayjs/redis';
+
+@Provide()
+export class DemoService {
+  @Inject()
+  redisService: RedisService;
+
+  async redis_demo() {
+    return this.redisService.set('hooks_demo', 'hello', 'EX', 10);
+  }
+}
+
+```
+通过@Inject()注入
