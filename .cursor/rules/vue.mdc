@@ -1,0 +1,23 @@
+---
+description: 
+globs: *.vue
+alwaysApply: false
+---
+1. hooks方式调用后端接口示例
+```vue
+<script lang="ts" setup>
+import { reactive, ref } from "vue";
+import { info } from "@api/user.api";
+import { UserInfo } from "@interface/user";
+
+const onGetInfo = async () => {
+    const { success, message, data } = info('userId')
+    const userInfo: UserInfo = data
+    // raw body is { args: ["userId"] }
+}
+onGetInfo()
+</script>
+```
+2. 页面需要注册到router.ts和Home.vue
+3. 使用ant-design-vue4作为UI组件库，并且已经全局引入
+4. 禁止使用jsx

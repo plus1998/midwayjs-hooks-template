@@ -19,4 +19,4 @@ export class DemoService {
 }
 
 ```
-通过@Inject()注入
+通过@Inject()注入其他组件
