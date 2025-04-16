@@ -1,0 +1,32 @@
+---
+description: 
+globs: app/entity/*.ts
+alwaysApply: false
+---
+1. 实体声明示例
+```typescript
+import { prop, modelOptions } from '@typegoose/typegoose';
+
+@modelOptions({
+  schemaOptions: {
+    collection: 'User',
+    timestamps: true,
+  },
+})
+export class User {
+  // 仅为类声明
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
+
+  @prop({ type: String, required: true, unique: true })
+  public username: string;
+
+  @prop({ type: Boolean, required: false })
+  public enabled: boolean;
+
+  @prop({ type: Array, required: true })
+  public roles: string[];
+}
+```
+2. 每个字段都要声明类型
