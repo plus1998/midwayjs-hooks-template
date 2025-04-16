@@ -1,6 +1,6 @@
 # Midway.js 一体化项目模板
 
-NodeJS 20
+NodeJS 22
 
 # 介绍
 * Typegoose+MongoDB

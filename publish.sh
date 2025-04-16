@@ -10,7 +10,7 @@ ssh $username@$host "mkdir -p /home/$username/$project_name"
 ssh $username@$host "sudo chown -R $username:$username /home/$username/$project_name && sudo chmod -R 755 /home/$username/$project_name"
 
 # 将package.json、bootstrap.js、ecosystem.config.js 文件同步到服务器
-rsync -avz --delete package.json bootstrap.js ecosystem.config.js dist/ $username@$host:/home/$username/$project_name/
+rsync -avz --delete package.json bootstrap.js ecosystem.config.js dist $username@$host:/home/$username/$project_name/
 
 # npm install
 ssh $username@$host "cd /home/$username/$project_name && npm install --omit=dev"
