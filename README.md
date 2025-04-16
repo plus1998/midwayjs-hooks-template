@@ -1,5 +1,7 @@
 # Midway.js 一体化项目模板
 
+NodeJS 20
+
 # 介绍
 * Typegoose+MongoDB
 * Redis
@@ -32,6 +34,10 @@ npm build
 # 启动
 ```shell
 npm run start
+```
+or
+```
+node bootstrap.js
 ```
 
 # PM2部署
