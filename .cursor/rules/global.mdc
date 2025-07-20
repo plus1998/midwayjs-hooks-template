@@ -4,3 +4,4 @@ globs:
 alwaysApply: true
 ---
 1. 永远不要使用any去定义类型
+2. 使用npm run test:file测试单元测试文件
