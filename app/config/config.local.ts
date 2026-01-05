@@ -3,16 +3,16 @@ export default {
   redis: {
     client: {
       port: 6379, // Redis port
-      host: '192.168.31.172', // Redis host
-      password: '@Super123456',
+      host: 'localhost', // Redis host
+      password: 'Super123456',
       db: 0,
     },
   },
   bullmq: {
     defaultConnection: {
-      host: '192.168.31.172',
+      host: 'localhost',
       port: 6379,
-      password: '@Super123456',
+      password: 'Super123456',
       db: 1,
     },
     defaultPrefix: '{midway-bullmq}',
@@ -23,7 +23,7 @@ export default {
   mongoose: {
     dataSource: {
       default: {
-        uri: 'mongodb://192.168.31.172/hooks_demo',
+        uri: 'mongodb://localhost/hooks_demo',
         options: {
           useNewUrlParser: true,
           useUnifiedTopology: true,
